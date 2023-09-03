@@ -7,10 +7,10 @@ const session=require('express-session');
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const MongoStore=require('connect-mongo')(session);
-const sassMiddleware=require('sass-middleware');
+const sass=require('sass');
 const port=9000;
 
-app.use(sassMiddleware({
+app.use(sass.middleware({
     src: './assets/scss',
     dest: './assets/css',
     debug: true,
