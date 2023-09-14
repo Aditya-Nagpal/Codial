@@ -1,26 +1,25 @@
 const User=require('../models/user');
 
-module.exports.profile=function (req,res){
-    User.findById(req.params.id)
-        .then(function (user){
-            // can't use key user here because it is already present in locals.
-            return res.render('user_profile',{
-                title: "User Profile",
-                profile_user: user
-            });
-        });
+module.exports.profile=async function (req,res){
+    let user=await User.findById(req.params.id);
+    return res.render('user_profile',{
+        title: "User Profile",
+        profile_user: user
+    });
 };
 
-module.exports.update=function (req,res){
-    if(req.user.id == req.params.id){
-        User.findByIdAndUpdate(req.params.id, req.body)
-            .then(function (user){
-                return res.redirect('back');
-            });
-    } else{
-        return res.status(401).send('Unauthorized');
+module.exports.update=async function (req,res){
+    try {
+        if(req.user.id == req.params.id){
+            await User.findByIdAndUpdate(req.params.id, req.body);
+            return res.redirect('/');
+        } else{
+            return res.status(401).send('Unauthorized');
+        }
+    } catch (error) {
+        console.log(error);
     }
-}
+};
 
 module.exports.signUp=function(req,res){
     if(req.isAuthenticated()){
@@ -40,28 +39,47 @@ module.exports.signIn=function(req,res){
     });
 };
 
-module.exports.create=function(req,res){
+module.exports.create=async function(req,res){
     if(req.body.password != req.body.confirm_password){
         return res.redirect('back');
     }
-    User.findOne({email: req.body.email}).then(function (err,user){
-        if(err){
-            console.log("Error in finding user in signing up.",err);
-            return;
-        }
+    // let user=await User.findOne({email: req.body.email}).then(function (err,user){
+    //     if(err){
+    //         console.log("Error in finding user in signing up.",err);
+    //         return;
+    //     }
+    //     if(!user){
+    //         try {
+    //             User.create(req.body);
+    //             return res.redirect('/users/sign-in');
+    //         } catch (error) {
+    //             console.log("Error in creating user while signing up.");
+    //             return;
+    //         }
+    //     }
+    //     else{
+    //         return res.redirect('back');
+    //     }
+    // });
+
+    try {
+        let user=await User.findOne({email: req.body.email});
         if(!user){
             try {
-                User.create(req.body);
+                await User.create(req.body);
                 return res.redirect('/users/sign-in');
             } catch (error) {
-                console.log("Error in creating user while signing up.");
+                console.log("Error in creating user while signing up.", error);
                 return;
             }
         }
         else{
             return res.redirect('back');
         }
-    });
+    } catch (error) {
+        console.log("Error in finding user in signing up.",error);
+        return;
+    }
    
 };
 
