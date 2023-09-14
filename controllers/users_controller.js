@@ -32,8 +32,9 @@ module.exports.signUp=function(req,res){
 
 module.exports.signIn=function(req,res){
     if(req.isAuthenticated()){
+        console.log("Reached here.");
         return res.redirect('/users/profile');
-    }
+    } 
     return res.render('user_sign_in',{
         title: "Codial | Sign In"
     });
@@ -64,12 +65,12 @@ module.exports.create=async function(req,res){
 };
 
 module.exports.createSession=function (req,res){
+    req.flash('success','Logged in successfully.');
     return res.redirect('/');
 };
 
 module.exports.destroySession=function (req,res){
-    req.logout(function(err){
-        if(err){}
-    });
+    req.flash('success','You have logged out.');
+    req.logout(function(err){});
     return res.redirect('/');
-}
+};
