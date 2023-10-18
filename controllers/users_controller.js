@@ -1,4 +1,5 @@
 const User=require('../models/user');
+const ResetPasswordToken=require('../models/resetpasswordtoken');
 const fs=require('fs');
 const path=require('path');
 
@@ -53,7 +54,6 @@ module.exports.signUp=function(req,res){
 
 module.exports.signIn=function(req,res){
     if(req.isAuthenticated()){
-        console.log("Reached here.");
         return res.redirect('/users/profile');
     } 
     return res.render('user_sign_in',{
