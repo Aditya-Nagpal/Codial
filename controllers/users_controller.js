@@ -31,9 +31,10 @@ module.exports.update=async function (req,res){
                 }
                 user.save();
                 return res.redirect('back');
-            })
+            });
         } catch (error) {
-            
+            console.log(err);
+            return;
         }
     } else{
         req.flash('error','Unauthorized!');
@@ -93,4 +94,16 @@ module.exports.destroySession=function (req,res){
     req.flash('success','You have logged out.');
     req.logout(function(err){});
     return res.redirect('/');
+};
+
+module.exports.getResetEmail=function (req,res){
+    return res.render('reset_email', {
+        title: 'Codial | Enter Reset Email'
+    });
+};
+
+module.exports.sendResetMail=function (req,res){
+    req.flash('success','Reset mail sent successfully!');
+    console.log(req.body);
+    return res.redirect('/users/sign-in')
 };
