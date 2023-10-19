@@ -133,7 +133,6 @@ module.exports.sendResetMail=async function (req,res){
 
 module.exports.resetForm=async function (req,res){
     let resetToken=await ResetPasswordToken.findOne({accessToken: req.params.accessToken});
-    let user=await User.findById(resetToken.user.toJSON());
     return res.render('reset_form', {
         title: 'Codial | Reset password form',
         resetToken: resetToken
