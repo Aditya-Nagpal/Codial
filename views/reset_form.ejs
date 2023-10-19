@@ -1,0 +1,12 @@
+<% if(resetToken.isValid) { %>
+    <form action="/users/reset_password/change_password/<%= resetToken.accessToken %>" method="POST">
+        <input type="password" name="new_password" placeholder="New Password">
+        <input type="password" name="confirm_new_password" placeholder="Confirm new password">
+        <input type="submit" name="Reset password">
+    </form>
+<% } else{ %>
+    <div>
+        <h3>Your password has been reset successfully!</h3>
+        <p> You can go back to <a href="/users/sign-in">sign in</a> page.</p>
+    </div>
+<% } %>

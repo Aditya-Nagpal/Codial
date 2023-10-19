@@ -2,7 +2,7 @@ const mongoose=require('mongoose');
 
 const resetPasswordTokenSchema=new mongoose.Schema({
     user: {
-        user: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
     accessToken: {

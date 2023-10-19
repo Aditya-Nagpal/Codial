@@ -1,0 +1,6 @@
+<div>
+    <p>Hi <%= resetToken.user.name %>, </p><br><br>
+    <p>To reset yout password, use the link below: </p>
+    <p><a href="http://localhost:9000/users/reset_password/<%= resetToken.accessToken %>">http://localhost:9000/users/reset_password/<%= resetToken.accessToken %></a></p>
+    <br><br>
+</div>

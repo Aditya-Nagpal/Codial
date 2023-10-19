@@ -2,6 +2,9 @@ const User=require('../models/user');
 const ResetPasswordToken=require('../models/resetpasswordtoken');
 const fs=require('fs');
 const path=require('path');
+const crypto=require('crypto');
+const queue=require('../config/kue');
+const resetLinkMailWorker=require('../workers/reset_link_mail_worker');
 
 module.exports.profile=async function (req,res){
     let user=await User.findById(req.params.id);
@@ -102,8 +105,51 @@ module.exports.getResetEmail=function (req,res){
     });
 };
 
-module.exports.sendResetMail=function (req,res){
-    req.flash('success','Reset mail sent successfully!');
-    console.log(req.body);
-    return res.redirect('/users/sign-in')
+module.exports.sendResetMail=async function (req,res){
+    try {
+        req.flash('success','Reset mail sent successfully!');
+        let user=await User.findOne({email: req.body.reset_mail});
+        if(user){
+            let resetToken=await ResetPasswordToken.create({
+                user: user,
+                accessToken: crypto.randomBytes(10).toString('hex'),
+                isValid: true
+            });
+            let job=queue.create('reset-link-emails', resetToken).save(function (err){
+                if(err){
+                    console.log('Error in sending to queue',err);
+                    return;
+                }
+                console.log('Job enqueued',job.id);
+            });
+            return res.redirect('/users/sign-in');
+        }
+    } catch (error) {
+        req.flash('error',error);
+        console.log('Error in sending reset mail',error);
+        return;
+    }
+};
+
+module.exports.resetForm=async function (req,res){
+    let resetToken=await ResetPasswordToken.findOne({accessToken: req.params.accessToken});
+    let user=await User.findById(resetToken.user.toJSON());
+    return res.render('reset_form', {
+        title: 'Codial | Reset password form',
+        resetToken: resetToken
+    });
+};
+
+module.exports.resetPassword=async function (req,res){
+    let resetToken=await ResetPasswordToken.findOne({accessToken: req.params.accessToken});
+    let user=await User.findById(resetToken.user.toJSON());
+    if(req.body.new_password == req.body.confirm_new_password){
+        user=await User.findByIdAndUpdate(user._id, {password: req.body.new_password});
+        resetToken=await ResetPasswordToken.findOneAndUpdate({accessToken: req.params.accessToken},{isValid: false});
+        req.flash('success', 'Password updated successfully!');
+        return res.redirect('back');
+    } else{
+        req.flash('error', "Passwords don't match. Try again.");
+        return res.redirect('back');
+    }
 };
