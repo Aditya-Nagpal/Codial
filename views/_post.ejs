@@ -6,11 +6,17 @@
             </small>
         <% } %>
         <%= post.content %><br>
-        <form class="like_button">
-            <span>0</span>
-            <button type="button" state="false"><i class="fa-regular fa-xl fa-thumbs-up"></i></button>
-        </form>
-        <small> <%= post.user.name %></small>
+        <small> <%= post.user.name %></small><br>
+        <small>
+            <% if(locals.user){ %> 
+                <%= post.likes.length %> 
+                <a class="toggle-like-button" href="/likes/toggle/?id=<%=post._id%>&type=Post">
+                    <i class="fa-regular fa-xl fa-thumbs-up"></i>
+                </a>
+            <% } else { %> 
+                <%= post.likes.length %>
+            <% } %>
+        </small>
     </p>
     <div class="post-comments">
         <% if(locals.user) {%>

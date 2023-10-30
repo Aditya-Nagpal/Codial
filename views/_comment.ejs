@@ -7,9 +7,15 @@
         <% } %>
         <%= comment.content %> : 
         <small><%= comment.user.name %></small>
-        <form class="like_button">
-            <span>0</span>
-            <button type="button" state="false"><i class="fa-regular fa-thumbs-up"></i></button>
-        </form>
+        <small>
+            <% if(locals.user){ %> 
+                <%= comment.likes.length %>
+                <a class="toggle-like-button" href="/likes/toggle/?id=<%comment._id%>&type=Comment">
+                    <i class="fa-regular fa-thumbs-up"></i>
+                </a>
+            <% } else{ %> 
+                <%= comment.likes.length %>
+            <% } %>
+        </small>
     </p>
 </li>

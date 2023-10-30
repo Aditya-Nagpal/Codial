@@ -12,8 +12,9 @@
                     console.log(data);
                     let newPost=newPostDom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
-                    deletePost($(' .delete-post-button',newPost));
+                    deletePost($(' .delete-post-button', newPost));
                     new PostComments(data.data.post._id);
+                    new ToggleLike($(' .toggle-like-button', newPost));
                     new Noty({
                         theme: 'relax',
                         text: "Post published!",
@@ -36,7 +37,13 @@
                             <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>
                         </small>
                         ${post.content}<br>
-                        <small> ${post.user.name}</small>
+                        <small> ${post.user.name}</small><br>
+                        <small>
+                            0
+                            <a class="toggle-like-button" href="/likes/toggle/?id=<%=post._id%>&type=Post">
+                                <i class="fa-regular fa-xl fa-thumbs-up"></i>
+                            </a>
+                        </small>
                     </p>
                     <div class="post-comments">
                         <form action="/comments/create" method="POST">

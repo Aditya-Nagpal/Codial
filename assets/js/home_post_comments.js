@@ -25,7 +25,8 @@ class PostComments{
                     console.log(data);
                     let newComment=pself.newCommentDOM(data.data.comment);
                     $(`#post-comments-${postId}`).append(newComment);
-
+                    pself.deleteComment($(' .delete-comment-button', newComment));
+                    new ToggleLike($(' .toggle-like-button', newComment));
                     new Noty({
                         theme: 'relax',
                         text: "Comment published!",
@@ -48,6 +49,13 @@ class PostComments{
                             </small>
                             ${comment.content} : 
                             <small>${comment.user.name}</small>
+                            <small>
+                                <% if(locals.user){ %> 
+                                    0
+                                    <a class="toggle-like-button" href="/likes/toggle/?id=<%comment._id%>&type=Comment">
+                                        <i class="fa-regular fa-thumbs-up"></i>
+                                    </a>
+                            </small>
                         </p>
                     </li>`)
     };
