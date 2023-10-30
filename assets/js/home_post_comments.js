@@ -52,7 +52,7 @@ class PostComments{
                             <small>
                                 <% if(locals.user){ %> 
                                     0
-                                    <a class="toggle-like-button" href="/likes/toggle/?id=<%comment._id%>&type=Comment">
+                                    <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=<%comment._id%>&type=Comment">
                                         <i class="fa-regular fa-thumbs-up"></i>
                                     </a>
                             </small>

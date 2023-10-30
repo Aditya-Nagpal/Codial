@@ -6,6 +6,7 @@ module.exports.toggleLikes=async function (req,res){
     try {
         let likeable;
         let deleted=false;
+        console.log(req.query.type);
         if(req.query.type == "Post"){
             likeable=await Post.findById(req.query.id).populate('likes');
         } else{
