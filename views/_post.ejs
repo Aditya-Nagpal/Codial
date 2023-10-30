@@ -6,6 +6,10 @@
             </small>
         <% } %>
         <%= post.content %><br>
+        <form class="like_button">
+            <span>0</span>
+            <button type="button" state="false"><i class="fa-regular fa-xl fa-thumbs-up"></i></button>
+        </form>
         <small> <%= post.user.name %></small>
     </p>
     <div class="post-comments">

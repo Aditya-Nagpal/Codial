@@ -1,1 +1,13 @@
+.like_button button{
+    background-color: transparent;
+    border: none;
+}
 
+.like_button button:hover{
+    cursor: pointer;
+    color: blue;
+}
+
+.like_button button i{
+
+}

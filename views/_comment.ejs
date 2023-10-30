@@ -7,5 +7,9 @@
         <% } %>
         <%= comment.content %> : 
         <small><%= comment.user.name %></small>
+        <form class="like_button">
+            <span>0</span>
+            <button type="button" state="false"><i class="fa-regular fa-thumbs-up"></i></button>
+        </form>
     </p>
 </li>
