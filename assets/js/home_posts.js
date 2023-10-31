@@ -40,7 +40,7 @@
                         <small> ${post.user.name}</small><br>
                         <small>
                             0
-                            <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=<%=post._id%>&type=Post">
+                            <a class="toggle-like-button" type="Comment" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
                                 <i class="fa-regular fa-xl fa-thumbs-up"></i>
                             </a>
                         </small>

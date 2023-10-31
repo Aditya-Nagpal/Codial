@@ -6,7 +6,6 @@ module.exports.toggleLikes=async function (req,res){
     try {
         let likeable;
         let deleted=false;
-        console.log(req.query.type);
         if(req.query.type == "Post"){
             likeable=await Post.findById(req.query.id).populate('likes');
         } else{
@@ -27,7 +26,7 @@ module.exports.toggleLikes=async function (req,res){
             likeable.likes.push(newLike._id);
             likeable.save();
         }
-        return res.json(200, {
+        return res.status(200).json({
             message: 'request successful',
             data: {
                 deleted: deleted
@@ -35,7 +34,7 @@ module.exports.toggleLikes=async function (req,res){
         });
     } catch (error) {
         console.log(error);
-        return res.json(500, {
+        return res.status(500).json({
             message: 'Internal server error'
         });
     }

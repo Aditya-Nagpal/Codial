@@ -9,9 +9,8 @@
         <small> <%= post.user.name %></small><br>
         <small>
             <% if(locals.user){ %> 
-                <%= post.likes.length %> 
-                <a class="toggle-like-button" href="/likes/toggle/?id=<%=post._id%>&type=Post">
-                    <i class="fa-regular fa-xl fa-thumbs-up"></i>
+                <a class="toggle-like-button" type="Post" data-likes="<%= post.likes.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post">
+                    <span><%= post.likes.length %></span> <i class="fa-regular fa-xl fa-thumbs-up"></i>
                 </a>
             <% } else { %> 
                 <%= post.likes.length %>

@@ -51,8 +51,8 @@ class PostComments{
                             <small>${comment.user.name}</small>
                             <small>
                                 <% if(locals.user){ %> 
-                                    0
-                                    <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=<%comment._id%>&type=Comment">
+                                    ${comment.likes.length}
+                                    <a class="toggle-like-button" type="Comment" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
                                         <i class="fa-regular fa-thumbs-up"></i>
                                     </a>
                             </small>

@@ -14,14 +14,18 @@ class ToggleLike{
             })
             .done(function(data){
                 let likesCnt=parseInt($(self).attr('data-likes'));
-                console.log(likesCnt);
                 if(data.data.deleted == true){
                     likesCnt-=1;
                 } else{
                     likesCnt++;
                 }
+                let type=$(self).attr('type');
                 $(self).attr('data-likes', likesCnt);
-                $(self).html(`${likesCnt} <i class="fa-regular fa-xl fa-thumbs-up"></i>`);
+                if(type === "Post"){
+                    $(self).html(`<span>${likesCnt}</span> <i class="fa-regular fa-xl fa-thumbs-up"></i>`);
+                } else{
+                    $(self).html(`<span>${likesCnt}</span> <i class="fa-regular fa-thumbs-up"></i>`);
+                }
             })
             .fail(function(errData){
                 console.log('error in completing the request');

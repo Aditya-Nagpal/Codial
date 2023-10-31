@@ -9,9 +9,8 @@
         <small><%= comment.user.name %></small>
         <small>
             <% if(locals.user){ %> 
-                <%= comment.likes.length %>
-                <a class="toggle-like-button" href="/likes/toggle/?id=<%comment._id%>&type=Comment">
-                    <i class="fa-regular fa-thumbs-up"></i>
+                <a class="toggle-like-button" type="Comment" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+                    <span><%= comment.likes.length %></span> <i class="fa-regular fa-thumbs-up"></i>
                 </a>
             <% } else{ %> 
                 <%= comment.likes.length %>
