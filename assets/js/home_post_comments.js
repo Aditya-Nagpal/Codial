@@ -17,12 +17,12 @@ class PostComments{
         this.newCommentForm.submit(function(e){
             let self=this;
             e.preventDefault();
+            console.log(e);
             $.ajax({
                 type: 'post',
                 url: '/comments/create',
                 data: $(self).serialize(),
                 success: function(data){
-                    console.log(data);
                     let newComment=pself.newCommentDOM(data.data.comment);
                     $(`#post-comments-${postId}`).append(newComment);
                     pself.deleteComment($(' .delete-comment-button', newComment));
@@ -50,7 +50,6 @@ class PostComments{
                             ${comment.content} : 
                             <small>${comment.user.name}</small>
                             <small>
-                                <% if(locals.user){ %> 
                                     ${comment.likes.length}
                                     <a class="toggle-like-button" type="Comment" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
                                         <i class="fa-regular fa-thumbs-up"></i>

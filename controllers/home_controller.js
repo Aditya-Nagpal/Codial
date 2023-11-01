@@ -14,7 +14,7 @@ module.exports.home = async function(req,res){
             }
         }).populate('likes');
 
-        let users=await User.find({});
+        let users=await User.find({}).populate('frienship');
 
         return res.render('home',{
             title: "Codial | Home",

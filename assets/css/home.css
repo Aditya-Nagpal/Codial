@@ -1,3 +1,13 @@
 .toggle-like-button{
-    
+    color: black;
+    text-decoration: none;
+}
+
+#home-container{
+    display: flex;
+}
+
+#home-container section{
+    width: 50%;
+    border: 2px solid black;
 }
