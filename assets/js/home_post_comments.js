@@ -10,7 +10,7 @@ class PostComments{
         $(' .delete-comment-button', this.postContainer).each(function (){
             self.deleteComment($(this));
         });
-    }
+    };
 
     createComment(postId){
         let pself=this;

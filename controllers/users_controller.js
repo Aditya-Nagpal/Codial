@@ -8,6 +8,13 @@ const resetLinkMailWorker=require('../workers/reset_link_mail_worker');
 
 module.exports.profile=async function (req,res){
     let user=await User.findById(req.params.id);
+    req.user=await req.user.populate({
+        path: "friendships",
+        options: { sort: { createdAt: -1 } },
+        populate: {
+            path: "from_user to_user",
+        }
+    });
     return res.render('user_profile',{
         title: "User Profile",
         profile_user: user

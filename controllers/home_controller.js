@@ -14,15 +14,26 @@ module.exports.home = async function(req,res){
             }
         }).populate('likes');
 
-        let users=await User.find({}).populate('frienship');
+        let users=await User.find({});
+        let usersFriendships;
+        if (req.user) {
+            usersFriendships = await User.findById(req.user._id).populate({
+                path: "friendships",
+                options: { sort: { createdAt: -1 } },
+                populate: {
+                    path: "from_user to_user",
+                }
+            });
+        }
 
         return res.render('home',{
             title: "Codial | Home",
             posts: posts,
-            all_users:  users
+            all_users:  users,
+            my_user: usersFriendships
         });
     } catch (error) {
-        console.log("Error");
+        console.log("Error in routing to home",error);
+        return;
     }
-    
 };

@@ -1,27 +1,30 @@
 <link rel="stylesheet" type="text/css" href="/css/user.css">
 <img src="<%= user.avatar %>" alt="<%= user.name %>" width="100">
-<% if(user.id == profile_user.id){ %>
-    <p><%= profile_user.name %></p>
-    <p><%= profile_user.email %></p>     
-    <!-- if user matches then show the form -->
-    <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
-        <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
-        <input type="text" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required>
-        <input type="file" name="avatar" placeholder="Profile Picture">
-        <input type="submit" value="update">
-    </form>
-<% } else{ %>
-    <!-- else show only the profile info -->
-    <p><%= profile_user.name %></p>
-    <p><%= profile_user.email %></p>   
-    <%= user.friendships %>
-    <% if(user.friendships.find((element)=>element.to_user == profile_user)){ %> 
-        <form action="/friendships/remove/?from_user=<%= user.id %>&to_user=<%= profile_user.id %>" method="POST">
-            <button>Remove</button>
+
+<p><%= profile_user.name %></p>
+<p><%= profile_user.email %></p>
+
+<div id="profile-container">
+    <% if(user.id == profile_user.id){ %>   
+        <!-- if user matches then show the form -->
+        <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
+            <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
+            <input type="text" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required>
+            <input type="file" name="avatar" placeholder="Profile Picture">
+            <input type="submit" value="update">
         </form>
-    <% } else{ %> 
-        <form action="/friendships/add/?from_user=<%= user.id %>&to_user=<%= profile_user.id %>" method="POST">
-            <button>Add</button>
-        </form>
-    <% } %>           
-<% } %>
+    <% } else{ %>
+        <!-- else show only the profile info -->
+        <% if(user.friendships.find((element)=>element.to_user._id.toJSON() == profile_user._id.toJSON())){ %> 
+            <form id="remove-friend-form" action="/friendships/remove/?from_user=<%= user.id %>&to_user=<%= profile_user.id %>" value="<%= user.id %>&<%= profile_user.id %>" method="POST">
+                <button id="remove-friend-button">Remove</button>
+            </form>
+        <% } else{ %> 
+            <form id="add-friend-form" action="/friendships/add/?from_user=<%= user.id %>&to_user=<%= profile_user.id %>" value="<%= user._id %>&<%= profile_user.id %>" method="POST">
+                <button id="add-friend-button">Add</button>
+            </form>
+        <% } %>           
+    <% } %>
+</div>
+<!-- <script src="/js/home_friends.js"></script> -->
+<script src="/js/home_friends.js"></script>

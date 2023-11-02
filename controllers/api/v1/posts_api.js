@@ -8,8 +8,11 @@ module.exports.index=async function(req,res){
             path: 'comments',
             populate: {
                 path: 'user'
+            },
+            populate: {
+                path: 'likes'
             }
-        });
+        }).populate('likes')
 
     return res.json(200, {
         message: 'List of posts',

@@ -23,13 +23,18 @@
 
     <section id="user-friends">
         <% if(locals.user){ %> 
-            <div>
+            <div id="friends-container">
                 <h4>Friends</h4>
-                <% for(let friendship of locals.user.friendships){ %> 
-                    <!-- <p>
-                        <a href="/users/profile/<%= %>"><%= friendship %></a>
-                    </p> -->
-                <% } %>
+                <!-- <%= user %> -->
+                <ul>
+                    <% for(let friendship of my_user.friendships){ %> 
+                        <li id="#friend-<%= friendship.to_user._id %>">
+                            <p>
+                                <a href="/users/profile/<%= friendship.to_user._id %>"><%=friendship.to_user.name %></a>
+                            </p>
+                        </li>
+                    <% } %>
+                </ul>
             </div>
         <% } %>
         <div>
@@ -45,6 +50,7 @@
 <script src="/js/home_post_comments.js"></script>
 <script src="/js/home_posts.js"></script>
 <script src="/js/toggle_likes.js"></script>
+<script src="/js/home_friends.js"></script>
 <script>
     $('.toggle-like-button').each(function(){
         let self=this;

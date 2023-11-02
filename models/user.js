@@ -23,7 +23,7 @@ const userSchema=new mongoose.Schema({
     },
     friendships: [
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.ObjectId,
             ref: 'Friendship'
         }
     ]
