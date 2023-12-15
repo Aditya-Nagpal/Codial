@@ -50,9 +50,8 @@ class PostComments{
                             ${comment.content} : 
                             <small>${comment.user.name}</small>
                             <small>
-                                    ${comment.likes.length}
-                                    <a class="toggle-like-button" type="Comment" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
-                                        <i class="fa-regular fa-thumbs-up"></i>
+                                    <a class="toggle-like-button" type="Comment" data-likes="${comment.likes.length}" href="/likes/toggle/?id=${comment._id}&type=Comment">
+                                        <span>${comment.likes.length}</span> <button type="button"><i class="fa-regular fa-thumbs-up"></i></button>
                                     </a>
                             </small>
                         </p>

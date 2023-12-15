@@ -39,9 +39,8 @@
                         ${post.content}<br>
                         <small> ${post.user.name}</small><br>
                         <small>
-                            0
-                            <a class="toggle-like-button" type="Comment" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
-                                <i class="fa-regular fa-xl fa-thumbs-up"></i>
+                            <a class="toggle-like-button" type="Post" data-likes="${post.likes.length}" href="/likes/toggle/?id=${post._id}&type=Post">
+                                <span>${post.likes.length}</span> <button type="button"><i class="fa-regular fa-xl fa-thumbs-up"></i></button>
                             </a>
                         </small>
                     </p>

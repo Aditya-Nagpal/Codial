@@ -22,9 +22,9 @@ class ToggleLike{
                 let type=$(self).attr('type');
                 $(self).attr('data-likes', likesCnt);
                 if(type === "Post"){
-                    $(self).html(`<span>${likesCnt}</span> <i class="fa-regular fa-xl fa-thumbs-up"></i>`);
+                    $(self).html(`<span>${likesCnt}</span> <button type="button"><i class="fa-regular fa-xl fa-thumbs-up"></i></button>`);
                 } else{
-                    $(self).html(`<span>${likesCnt}</span> <i class="fa-regular fa-thumbs-up"></i>`);
+                    $(self).html(`<span>${likesCnt}</span> <button type="button"><i class="fa-regular fa-thumbs-up"></i></button>`);
                 }
             })
             .fail(function(errData){
