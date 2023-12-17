@@ -1,0 +1,112 @@
+#chatbox{
+    height: 410px;
+    width: 380px;
+    position: fixed;
+    bottom: 10px;
+    right: 20px;
+    background-color: rgb(53, 51, 52);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+header{
+    height: 12%;
+    background-color: rgb(192, 190, 190);
+    border-radius: 10px 10px 0 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+header p{
+    font-size: 1.6rem;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: 700;
+}
+
+#message-window{
+    height: 76.5%;
+    overflow-y: scroll;
+    padding: 4px 0;
+}
+
+#message-window::-webkit-scrollbar{
+    display: none;
+}
+
+.message{
+    height: auto;
+    min-height: 43px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+}
+
+.message p{
+    margin: 0;
+    padding: 5px 10px;
+    border-radius: 11px;
+    font-size: 18px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height: 1.5;
+    color: white;
+    text-align: left;
+    max-width: 53%;
+    white-space: normal;
+    text-overflow: clip;
+}
+
+#send-message{
+    height: 11.5%;
+    display: flex;
+}
+
+#send-message > *{
+    height: 100%;
+    border: none;
+}
+
+#send-message textarea{
+    box-sizing: border-box;
+    width: 80%;
+    border-radius: 0 0 0 9px;
+    font-size: 1.2rem;
+    padding: 12px 7px;
+    background-color: rgb(233, 237, 237);
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    overflow-x: hidden;
+    resize: none;
+}
+
+#send-message textarea:focus{
+    outline: none;
+}
+
+#send-message textarea::-webkit-scrollbar{
+    display: none;
+}
+
+#send-message button{
+    width: 20%;
+    border-radius: 0 0 10px 0;
+    background-color: rgb(179, 177, 180);
+}
+
+.left{
+    justify-content: flex-start;
+}
+
+.left p{
+    background-color: red;
+}
+
+.right{
+    justify-content: flex-end;
+}
+
+.right p{
+    background-color: skyblue;
+}

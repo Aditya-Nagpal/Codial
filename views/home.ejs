@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/css/home.css">
+<link rel="stylesheet" type="text/css" href="/css/chatbox.css">
 <h1 style="font-family: monospace;">
     codial / <%= title %>
 </h1>
@@ -25,7 +26,6 @@
         <% if(locals.user){ %> 
             <div id="friends-container">
                 <h4>Friends</h4>
-                <!-- <%= user %> -->
                 <ul>
                     <% for(let friendship of my_user.friendships){ %> 
                         <li id="#friend-<%= friendship.to_user._id %>">
@@ -46,6 +46,9 @@
             <% } %>
         </div>
     </section>
+    <aside id="chatbox">
+        <%- include('_chatbox') %>
+    </aside>
 </div>
 <script src="/js/home_post_comments.js"></script>
 <script src="/js/home_posts.js"></script>
