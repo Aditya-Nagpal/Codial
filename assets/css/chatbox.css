@@ -2,23 +2,13 @@
     height: 410px;
     width: 380px;
     position: fixed;
-    bottom: 10px;
+    bottom: 0px;
     right: 20px;
     background-color: rgb(53, 51, 52);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-}
-
-header{
-    height: 12%;
-    background-color: rgb(192, 190, 190);
-    border-radius: 10px 10px 0 0;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    padding-left: 10px;
 }
 
 header p{
@@ -28,7 +18,7 @@ header p{
 }
 
 #message-window{
-    height: 76.5%;
+    height: 88.5%;
     overflow-y: scroll;
     padding: 4px 0;
 }
