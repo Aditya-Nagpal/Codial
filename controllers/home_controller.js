@@ -26,7 +26,7 @@ module.exports.home = async function(req,res){
         }
 
         return res.render('home',{
-            title: "Codial | Home",
+            title: "Home",
             posts: posts,
             all_users:  users,
             my_user: usersFriendships

@@ -1,4 +1,5 @@
 body {
   margin: 0;
-  text-align: center;
+  background-image: url('../images/background-img.jpg');
+  overflow: hidden;
 }

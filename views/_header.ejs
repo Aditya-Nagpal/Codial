@@ -1,7 +1,8 @@
-<header style="background-color: green;">
+<header>
+    <p>CODIAL</p>
     <ul>
         <% if(locals.user){ %>
-            <li><a href="/users/profile/<%= user.id %>"><%= user.name %></a></li>
+            <li><a href="/users/profile/<%= user.id %>">My Profile</a></li>
             <li>
                 <a href="/users/sign-out">Sign Out</a>
             </li>
