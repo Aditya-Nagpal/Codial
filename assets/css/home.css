@@ -27,12 +27,13 @@ h1{
     text-align: center;
     margin: 0;
     padding: 3px 0;
-    font-size: 2rem;
+    font-size: 1.7rem;
     font-family: var(--font-fam);
     text-transform: uppercase;
-    background-color: rgb(239, 233, 233);
-    border-top: 3px solid black;
-    border-bottom: 3px solid black;
+    color: white;
+    background-image: url('../images/header-img.jpg');
+    border-top: 3px solid red;
+    border-bottom: 3px solid red;
 }
 
 #new-post-form{
@@ -66,7 +67,7 @@ h1{
     font-weight: 700;
     border: 1px solid black;
     border-radius: 0 10px 10px 0;
-    background-color: darkslateblue;
+    background-image: url('../images/header-img.jpg');
     color: white;
     text-transform: uppercase;
     cursor: pointer;
@@ -77,18 +78,18 @@ h1{
 }
 
 .posts-list-container-signed-in-height{
-    height: 379px;
+    height: 384px;
 }
 
 .posts-list-container-signed-out-height{
-    height: 481px;
+    height: 487px;
 }
 
 #posts-list-container ul{
-    height: 100%;
     width: 100%;
     margin: 0;
     padding-left: 0;
+    list-style: none;
 }
 
 .replacement-text{
