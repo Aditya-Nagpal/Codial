@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/css/home.css">
-<link rel="stylesheet" type="text/css" href="/css/chatbox.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
 <div>
     <h1>
         <i class="fa-solid fa-house fa-xs"></i>
@@ -12,20 +12,19 @@
         <h3>Posts</h3>
         <% if(locals.user) {%>
             <form action="/posts/create" id="new-post-form" method="POST">
-                <textarea name="content" cols="100" rows="4" placeholder="Post here..." required></textarea>
+                <textarea name="content" placeholder="What's on your mind ?" required spellcheck="false"></textarea>
                 <input type="submit" value="Post">
             </form>
         <% } %>
         <div id="posts-list-container">
-            <% if(posts.length){ %> 
-                <ul>
+            <ul>
+                <% if(posts.length){ %> 
                     <% for(let post of posts){%>
                         <%- include('_post', {post: post}) %>
-                    <%} %>
-                </ul>
-            <% } else{ %> 
+                    <% } %>
+                <% } %> 
                 <p class="replacement-text">No posts to see :(</p>
-            <% } %>
+            </ul>
         </div>
     </section>
 
@@ -54,6 +53,17 @@
         </div>
     </section>
 </div>
+<% if(locals.user){ %>
+    <script>
+        $('#posts-list-container').addClass('posts-list-container-signed-in-height');
+        $('#posts-list-container').removeClass('posts-list-container-signed-out-height');
+    </script>
+<% } else{ %> 
+    <script>
+        $('#posts-list-container').addClass('posts-list-container-signed-out-height');
+        $('#posts-list-container').removeClass('posts-list-container-signed-in-height');
+    </script>
+<% } %>
 <script src="/js/home_post_comments.js"></script>
 <script src="/js/home_posts.js"></script>
 <script src="/js/toggle_likes.js"></script>
@@ -64,8 +74,12 @@
         let toggleLike=new ToggleLike(self);
     });
 </script>
-<% if (locals.user){ %>
+<% if(posts.length){ %> 
     <script>
-        new ChatEngine('user-chat-box', '<%= locals.user.email %>')
+        $('#posts-list-container ul .replacement-text').addClass('hide');
+    </script>
+<% } else { %> 
+    <script>
+        $('#posts-list-container ul .replacement-text').removeClass('hide');
     </script>
 <% } %>

@@ -3,15 +3,18 @@
     let createPost=function(){
         let newPostForm=$('#new-post-form');
         newPostForm.submit(function (e){
+            let data=newPostForm.serialize();
             e.preventDefault();
             $.ajax({
                 type: 'post',
                 url: '/posts/create',
-                data: newPostForm.serialize(),
+                data: data,
                 success: function(data){
-                    console.log(data);
                     let newPost=newPostDom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
+                    if($('#posts-list-container ul li').length){
+                        $('#posts-list-container ul .replacement-text').addClass('hide');
+                    }
                     deletePost($(' .delete-post-button', newPost));
                     new PostComments(data.data.post._id);
                     new ToggleLike($(' .toggle-like-button', newPost));
@@ -66,8 +69,10 @@
                 type: 'get',
                 url: $(deleteLink).prop('href'),
                 success: function(data){
-                    console.log(data);
                     $(`#post-${data.data.post_id}`).remove();
+                    if($('#posts-list-container ul li').length == 0){
+                        $('#posts-list-container ul .replacement-text').removeClass('hide');
+                    }
                     new Noty({
                         theme: 'relax',
                         text: "Post deleted!",

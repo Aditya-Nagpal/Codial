@@ -14,15 +14,6 @@ h1{
     display: flex;
 }
 
-.replacement-text{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    font-size: 1.2rem;
-    font-family: var(--font-fam);
-    font-weight: 700;
-}
-
 #feed-posts{
     width: 65%;
     border-right: 1px solid black;
@@ -45,12 +36,74 @@ h1{
 }
 
 #new-post-form{
-    height: 70px;
-    margin: 20px 0 10px;
+    margin-top: 20px;
+    display: flex;
+}
+
+#new-post-form textarea{
+    height: 83px;
+    width: 42vw;
+    padding:  6px 10px;
+    box-sizing: border-box;
+    resize: none;
+    font-size: 1.2rem;
+    font-family: var(--font-fam);
+    border: 1px solid black;
+    border-right: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+#new-post-form textarea::-webkit-scrollbar{display: none;}
+
+#new-post-form textarea:focus{outline: none;}
+
+#new-post-form input[type=submit]{
+    height: 83px;
+    width: 80px;
+    padding: 0;
+    font-size: 1.5rem;
+    font-family: var(--font-fam);
+    font-weight: 700;
+    border: 1px solid black;
+    border-radius: 0 10px 10px 0;
+    background-color: darkslateblue;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 #posts-list-container{
-    height: 381px;
+    width: 38vw;
+}
+
+.posts-list-container-signed-in-height{
+    height: 379px;
+}
+
+.posts-list-container-signed-out-height{
+    height: 481px;
+}
+
+#posts-list-container ul{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding-left: 0;
+}
+
+.replacement-text{
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-family: var(--font-fam);
+    font-weight: 700;
+}
+
+.hide{
+    visibility: hidden;
 }
 
 .toggle-like-button{
