@@ -1,3 +1,110 @@
-#posts-list-container ul li{
+.post{
     border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.post-section{
+    display: flex;
+}
+
+.post-section div:nth-child(2){width: 100%;}
+
+.user-pic{
+    min-width: 125px;
+    height: 132px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-pic img{
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+}
+
+.post-user-name{
+    font-size: 1.4rem;
+    font-family: var(--font-fam);
+    font-weight: 600;
+    color: red;
+    text-transform: uppercase;
+    margin: 20px 0 10px;
+}
+
+.post-content{
+    font-size: 2rem;
+    font-family: var(--font-fam);
+    font-weight: 600;
+    margin: 0 0 10px;
+}
+
+.post-options{
+    height: 39px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-fam);
+}
+
+.post-options div:nth-child(2){
+    max-width: 40%;
+}
+
+.post-options span:first-child{
+    width: 30%;
+    font-weight: 600;
+    color: darkblue;
+}
+
+.toggle-like-button{text-decoration: none;}
+
+.delete-post-button{
+    color: red;
+    text-decoration: none;
+}
+
+.delete-post-button:hover{color: black;}
+
+.comment-section{
+    width: 518.51px;
+    border: 1px solid blue;
+}
+
+.comment-section h4{
+    margin: 10px 0;
+    font-size: 1.4rem;
+    font-family: var(--font-fam);
+}
+
+.post-comments-form{
+    display: flex;
+}
+
+.post-comments-form textarea{
+    width: 80%;
+    padding: 6px 10px;
+    resize: none;
+    font-size: 1.1rem;
+    font-family: var(--font-fam);
+    border: 1px solid black;
+    border-right: 0;
+    border-radius: 10px 0 0 10px;
+}
+
+.post-comments-form textarea::-webkit-scrollbar{display: none;}
+
+.post-comments-form input[type=submit]{
+    width: 20%;
+    padding: 0;
+    font-size: 1.2rem;
+    font-family: var(--font-fam);
+    border: 1px solid black;
+    border-radius: 0 10px 10px 0;
+    background-image: url('../images/header-img.jpg');
+    color: white;
 }

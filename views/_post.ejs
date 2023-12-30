@@ -1,19 +1,47 @@
-<li id="post-<%= post._id %>">
-    
-    <div class="post-comments">
-        <% if(locals.user) {%>
-            <form id="post-<%= post._id %>-comments-form" action="/comments/create" method="POST">
-                <input type="text" name="content" placeholder="Comment here..." required>
+<li id="post-<%= post._id %>" class="post">
+    <section class="post-section">
+        <div class="user-pic">
+            <% if(post.user.avatar){ %> 
+                <img src="<%= post.user.avatar %>" />
+            <% } else{ %> 
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9Z9vjM-_Ww_rUHKOYFQ3brhBsKWniGSN7jembYtImHkPzHReyZ4zNBlPF550WjI8a_eE&usqp=CAU" />
+            <% } %>
+        </div>
+        <div>
+            <p class="post-user-name"><%= post.user.name %></p>
+            <p class="post-content">
+                <%= post.content %>
+            </p>
+            <div class="post-options">
+                <span>Likes: <%= post.likes.length %></span>
+                <div>
+                    <% if(locals.user){ %> 
+                        <a class="toggle-like-button" type="Post" data-likes="<%= post.likes.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post">
+                            <button type="button" class="pointer" style="margin-right: 50px;"><i class="fa-regular fa-xl fa-thumbs-up"></i></button>
+                        </a>
+                    <% } %>
+                    <% if(locals.user && locals.user.id == post.user.id){ %>
+                        <span>
+                            <a class="delete-post-button" href="/posts/destroy/<%= post.id %>">delete</a>
+                        </span>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="comment-section">
+        <h4>Comments</h4>
+        <% if(locals.user){ %> 
+            <form id="post-<%= post._id %>-comments-form" class="post-comments-form" action="/comments/create" method="POST">
+                <textarea name="content" placeholder="Comment here..." required spellcheck="false"></textarea>
                 <input type="hidden" name="post" value="<%= post._id %>">
-                <input type="submit" value="Post Comment"> 
+                <input type="submit" value="comment" class="pointer"> 
             </form>
         <% } %>
-        <div class="post-comments-list">
-            <ul id="post-comments-<%= post._id %>">
-                <% for(let comment of post.comments){ %>
-                    <%- include('_comment', {comment: comment}) %>
-                <% } %>
-            </ul>
-        </div>
-    </div>
+        <ul id="post-comments-<%= post._id %>" class="comments-list-container">
+            <% for(let comment of post.comments){ %>
+                <%- include('_comment', {comment: comment}) %>
+            <% } %>
+        </ul>
+    </section>  
 </li>

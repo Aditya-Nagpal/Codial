@@ -12,7 +12,7 @@
                 success: function(data){
                     let newPost=newPostDom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
-                    if($('#posts-list-container ul li').length){
+                    if($('.post').length){
                         $('#posts-list-container ul .replacement-text').addClass('hide');
                     }
                     deletePost($(' .delete-post-button', newPost));
@@ -33,6 +33,10 @@
     };
 
     // Method to create a post in DOM.
+    // let newPostDom=function(post){
+    //     return $(``);
+    // }
+
     let newPostDom=function(post){
         return $(`<li id="post-${post._id}">
                     <p>
@@ -70,7 +74,7 @@
                 url: $(deleteLink).prop('href'),
                 success: function(data){
                     $(`#post-${data.data.post_id}`).remove();
-                    if($('#posts-list-container ul li').length == 0){
+                    if($('.post').length == 0){
                         $('#posts-list-container ul .replacement-text').removeClass('hide');
                     }
                     new Noty({

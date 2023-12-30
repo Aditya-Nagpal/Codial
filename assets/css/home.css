@@ -74,18 +74,22 @@ h1{
 }
 
 #posts-list-container{
-    width: 38vw;
+    width: 42vw;
+    overflow: scroll;
 }
 
+#posts-list-container::-webkit-scrollbar{display: none;}
+
 .posts-list-container-signed-in-height{
-    height: 384px;
+    height: 385px;
 }
 
 .posts-list-container-signed-out-height{
-    height: 487px;
+    height: 488px;
 }
 
 #posts-list-container ul{
+    height: 100%;
     width: 100%;
     margin: 0;
     padding-left: 0;
@@ -103,14 +107,9 @@ h1{
     font-weight: 700;
 }
 
-.hide{
-    visibility: hidden;
-}
+.hide{visibility: hidden;}
 
-.toggle-like-button{
-    color: black;
-    text-decoration: none;
-}
+.pointer{cursor: pointer;}
 
 #user-friends{
     width: 35%;
