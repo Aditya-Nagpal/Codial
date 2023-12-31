@@ -4,14 +4,12 @@
             <% if(post.user.avatar){ %> 
                 <img src="<%= post.user.avatar %>" />
             <% } else{ %> 
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9Z9vjM-_Ww_rUHKOYFQ3brhBsKWniGSN7jembYtImHkPzHReyZ4zNBlPF550WjI8a_eE&usqp=CAU" />
+                <img src="/images/default-dp.jpg" />
             <% } %>
         </div>
         <div>
             <p class="post-user-name"><%= post.user.name %></p>
-            <p class="post-content">
-                <%= post.content %>
-            </p>
+            <p class="post-content"><%= post.content %></p>
             <div class="post-options">
                 <span>Likes: <%= post.likes.length %></span>
                 <div>

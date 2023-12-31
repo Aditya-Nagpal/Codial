@@ -2,12 +2,11 @@
 <% if(profile_user.avatar){ %> 
     <img src="<%= profile_user.avatar %>" width="100">
 <% } else{ %> 
-    <img src="https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg" width="100">
+    <img src="/images/default-dp.jpg" >
 <% } %>
 
 <p><%= profile_user.name %></p>
 <p><%= profile_user.email %></p>
-
 <div id="profile-container">
     <% if(user.id == profile_user.id){ %>   
         <!-- if user matches then show the form -->

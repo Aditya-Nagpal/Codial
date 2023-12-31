@@ -10,7 +10,7 @@
 
 <div id="home-container">
     <section id="feed-posts">
-        <h3>Posts</h3>
+        <h3 class="heading">Posts</h3>
         <% if(locals.user) {%>
             <form action="/posts/create" id="new-post-form" method="POST">
                 <textarea name="content" placeholder="What's on your mind ?" required spellcheck="false"></textarea>
@@ -28,29 +28,52 @@
             </ul>
         </div>
     </section>
-
     <section id="user-friends">
         <% if(locals.user){ %> 
-            <div id="friends-container">
-                <h4>Friends</h4>
-                <ul>
-                    <% for(let friendship of my_user.friendships){ %> 
-                        <li id="#friend-<%= friendship.to_user._id %>">
-                            <p>
-                                <a href="/users/profile/<%= friendship.to_user._id %>"><%=friendship.to_user.name %></a>
-                            </p>
-                        </li>
+            <div id="friends-container" class="user-friends-div">
+                <h3 class="heading">Friends</h3>
+                <ul class="user-friends-div-list">
+                    <% if(my_user.friendships.length){ %> 
+                        <% for(let friendship of my_user.friendships){ %> 
+                            <%- include('_friend', {friendship: friendship}) %>
+                        <% } %>
+                    <% } else{ %> 
+                        <p class="replacement-text">No friends added</p>
                     <% } %>
                 </ul>
             </div>
         <% } %>
-        <div>
-            <h4>You may want to add these users</h4>
-            <% for(let user of all_users){ %>
-                <p>
-                    <a href="/users/profile/<%= user.id %>"><%= user.name %></a>
-                </p>
+        <div id="other-users" class="user-friends-div">
+            <% if(locals.user){ %> 
+                <h3 class="heading">Add these users</h3>    
+            <% } else{ %> 
+                <h3 class="heading">These users have joined us</h3>    
             <% } %>
+            <ul class="user-friends-div-list">
+                <% for(let user of all_users){ %>
+                    <% if(locals.user && user.id == locals.user.id){ %>
+                        <% continue %>
+                    <% } %>
+                    <li class="user-friends-div-list-item">
+                        <div class="user-friends-div-list-item-img">
+                            <% if(user.avatar){ %> 
+                                <img src="<%= user.avatar %>" />
+                            <% } else{ %> 
+                                <img src="/images/default-dp.jpg" />
+                            <% } %>
+                        </div>
+                        <div>
+                            <p><%= user.name %></p>
+                            <p><%= user.email %></p>
+                        </div>
+                        <div>
+                            <a href="/users/profile/<%= user.id %>">
+                                <button class="pointer">View Profile</button>
+                            </a>
+                        </div>
+                    </li>
+                <% } %>
+            </ul>
         </div>
     </section>
 </div>
@@ -58,11 +81,13 @@
     <script>
         $('#posts-list-container').addClass('posts-list-container-signed-in-height');
         $('#posts-list-container').removeClass('posts-list-container-signed-out-height');
+        $('#other-users').css('height','265.6px');
     </script>
 <% } else{ %> 
     <script>
         $('#posts-list-container').addClass('posts-list-container-signed-out-height');
         $('#posts-list-container').removeClass('posts-list-container-signed-in-height');
+        $('#other-users').css('height','100%');
     </script>
 <% } %>
 <script src="/js/home_post_comments.js"></script>

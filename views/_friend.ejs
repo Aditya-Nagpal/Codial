@@ -1,0 +1,18 @@
+<li id="#friend-<%= friendship.to_user._id %>" class="user-friends-div-list-item">
+    <div class="user-friends-div-list-item-img">
+        <% if(friendship.to_user.avatar){ %> 
+            <img src="<%= friendship.to_user.avatar %>" />
+        <% } else{ %> 
+            <img src="/images/default-dp.jpg" />
+        <% } %>
+    </div>
+    <div>
+        <p><%= friendship.to_user.name %></p>
+        <p><%= friendship.to_user.email %></p>
+    </div>
+    <div>
+        <a href="/users/profile/<%= friendship.to_user._id %>">
+            <button class="pointer">View Profile</button>
+        </a>
+    </div>
+</li>
