@@ -1,0 +1,42 @@
+:root{
+    --font-fam: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    --border: white;
+}
+
+.page-heading{
+    font-size: 2.5rem;
+    font-family: var(--font-fam);
+    text-transform: uppercase;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.black{color: black;}
+
+.profile-container{
+    width: 38vw;
+    margin: auto;
+    background-color: rgb(80, 80, 142);
+    border-radius: 20px;
+    border: 4px solid var(--border);
+    padding-top: 30px;
+}
+
+.profile-img{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.profile-img img{
+    height: 200px;
+    width: 340px;
+    border: 4px solid var(--border);
+}
+
+.profile-info{
+    padding-left: 80px;
+    font-size: 1.6rem;
+    font-family: var(--font-fam);
+    color: var(--border);
+}

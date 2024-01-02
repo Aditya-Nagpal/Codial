@@ -1,8 +1,9 @@
 <link rel="stylesheet" type="text/css" href="/css/home.css">
 <link rel="stylesheet" type="text/css" href="/css/post.css">
 <link rel="stylesheet" type="text/css" href="/css/comment.css">
+
 <div>
-    <h1>
+    <h1 class="page-heading">
         <i class="fa-solid fa-house fa-xs"></i>
         <%= title %>
     </h1>
@@ -50,28 +51,15 @@
                 <h3 class="heading">These users have joined us</h3>    
             <% } %>
             <ul class="user-friends-div-list">
-                <% for(let user of all_users){ %>
-                    <% if(locals.user && user.id == locals.user.id){ %>
-                        <% continue %>
+                <% if(all_users.length){ %> 
+                    <% for(let user of all_users){ %>
+                        <% if(locals.user && user.id == locals.user.id){ %>
+                            <% continue %>
+                        <% } %>
+                        <%- include('_user',{user: user}) %>
                     <% } %>
-                    <li class="user-friends-div-list-item">
-                        <div class="user-friends-div-list-item-img">
-                            <% if(user.avatar){ %> 
-                                <img src="<%= user.avatar %>" />
-                            <% } else{ %> 
-                                <img src="/images/default-dp.jpg" />
-                            <% } %>
-                        </div>
-                        <div>
-                            <p><%= user.name %></p>
-                            <p><%= user.email %></p>
-                        </div>
-                        <div>
-                            <a href="/users/profile/<%= user.id %>">
-                                <button class="pointer">View Profile</button>
-                            </a>
-                        </div>
-                    </li>
+                <% } else{ %> 
+                    <p class="replacement-text">No users to show</p>
                 <% } %>
             </ul>
         </div>

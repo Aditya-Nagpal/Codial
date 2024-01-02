@@ -7,7 +7,7 @@
     --user-friends-width: 29%;
 }
 
-h1{
+.page-heading{
     font-size: 2.5rem;
     font-family: var(--font-fam);
     text-transform: uppercase;

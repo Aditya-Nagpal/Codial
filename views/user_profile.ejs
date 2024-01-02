@@ -1,16 +1,29 @@
-<link rel="stylesheet" type="text/css" href="/css/user.css">
-<% if(profile_user.avatar){ %> 
-    <img src="<%= profile_user.avatar %>" width="100">
-<% } else{ %> 
-    <img src="/images/default-dp.jpg" >
-<% } %>
+<link rel="stylesheet" type="text/css" href="/css/profile.css">
+<link rel="stylesheet" type="text/css" href="/css/forms.css">
 
-<p><%= profile_user.name %></p>
-<p><%= profile_user.email %></p>
-<div id="profile-container">
+<div>
+    <h1 class="page-heading"><%= title %></h1>
+</div>
+
+<div class="profile-container">
+    <div class="profile">
+        <div class="profile-img">
+            <% if(profile_user.avatar){ %> 
+                <img src="<%= profile_user.avatar %>" width="100">
+            <% } else{ %> 
+                <img src="/images/default-dp.jpg" >
+            <% } %> 
+        </div>
+        <div class="profile-info">
+            <p><b style="color: yellow;">Name:&emsp;</b><%= profile_user.name %></p>
+            <p><b style="color: yellow;">Email:&emsp;</b><%= profile_user.email %></p>
+        </div>
+    </div>
     <% if(user.id == profile_user.id){ %>   
         <!-- if user matches then show the form -->
-        <form action="/users/update/<%= profile_user.id %>" method="POST" enctype="multipart/form-data">
+        <form action="/users/update/<%= profile_user.id %>" class="form" method="POST" enctype="multipart/form-data">
+            <h3>update information</h3>
+            <label for="name">Name</label>
             <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
             <input type="text" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required>
             <input type="file" name="avatar" placeholder="Profile Picture">
