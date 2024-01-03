@@ -2,6 +2,52 @@
     --font-fam: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.form{
+.form h3{
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 2rem;
     font-family: var(--font-fam);
+}
+
+.form-label{
+    color: yellow;
+    font-size: 1.6rem;
+    font-family: var(--font-fam);
+    margin-left: 80px;
+}
+
+.form-text-input{
+    width: 250px;
+    font-size: 1.5rem;
+    font-family: var(--font-fam);
+    padding: 6px 10px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border: none;
+}
+
+.form-text-input:focus{outline: none;}
+
+.form input[type=file]{
+    width: 245px;
+    font-size: 1.2rem;
+    font-family: var(--font-fam);
+    margin-bottom: 20px;
+}
+
+.form-submit-button{
+    display: flex;
+    justify-content: center;
+}
+
+.form-submit-button input[type=submit]{
+    font-size: 1.3rem;
+    font-family: var(--font-fam);
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding: 5px 8px;
+    text-transform: uppercase;
+    background-color: red;
+    color: white;
+    border: 1px solid black;
 }

@@ -23,11 +23,15 @@
         <!-- if user matches then show the form -->
         <form action="/users/update/<%= profile_user.id %>" class="form" method="POST" enctype="multipart/form-data">
             <h3>update information</h3>
-            <label for="name">Name</label>
-            <input type="text" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required>
-            <input type="text" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required>
+            <label for="name" class="form-label"><b>Name:&emsp;</b></label>
+            <input type="text" class="form-text-input" name="name" placeholder="Your Name" value="<%= profile_user.name %>" required autocomplete="off">
+            <label for="email" class="form-label"><b>Email:&emsp;</b></label>
+            <input type="text" class="form-text-input" name="email" placeholder="Your Email" value="<%= profile_user.email %>" required autocomplete="off">
+            <label for="avatar" class="form-label"><b>Profile Picture:&emsp;</b></label>
             <input type="file" name="avatar" placeholder="Profile Picture">
-            <input type="submit" value="update">
+            <div class="form-submit-button">
+                <input type="submit" class="pointer" value="update">
+            </div>
         </form>
     <% } else{ %>
         <!-- else show only the profile info -->
