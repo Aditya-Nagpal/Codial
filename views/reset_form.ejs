@@ -1,9 +1,13 @@
+<link rel="stylesheet" type="text/css" href="/css/forms.css">
+
 <% if(resetToken.isValid) { %>
-    <form action="/users/reset_password/change_password/<%= resetToken.accessToken %>" method="POST">
-        <input type="password" name="new_password" placeholder="New Password" required>
-        <input type="password" name="confirm_new_password" placeholder="Confirm new password" required>
-        <input type="submit" name="Reset password">
-    </form>
+    <div class="form-container">
+        <form action="/users/reset_password/change_password/<%= resetToken.accessToken %>" method="POST">
+            <input type="password" name="new_password" placeholder="New Password" required>
+            <input type="password" name="confirm_new_password" placeholder="Confirm new password" required>
+            <input type="submit" name="Reset password">
+        </form>
+    </div>
 <% } else{ %>
     <div>
         <h3>Your password has been reset successfully!</h3>

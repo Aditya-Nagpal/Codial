@@ -1,13 +1,20 @@
-<h1>
-    Sign In
-</h1>
+<link rel="stylesheet" type="text/css" href="/css/forms.css">
+<script src="https://kit.fontawesome.com/50d3f01cf7.js" crossorigin="anonymous"></script>
 
-<form action="/users/create-session" method="POST">
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="password" name="password" placeholder="password" required>
-    <button>Sign In</button>
-</form>
+<div>
+    <h1 class="page-heading">Sign In</h1>
+</div>
 
-<small><a href="/users/get-reset-email">Forgot password?</a></small>
-
-<p><a href="/users/auth/google">google Sign In/Sign Up</a></p>
+<div class="form-container">
+    <form action="/users/create-session" method="POST">
+        <label for="email" class="form-label"><b>Email:</b></label>
+        <input type="email" class="form-text-input" name="email" placeholder="Your Email" required>
+        <label for="password" class="form-label"><b>Password:</b></label>
+        <input type="password" class="form-text-input" name="password" placeholder="Password" required>
+        <p id="forgot-password-button"><a href="/users/get-reset-email">Forgot password?</a></p>
+        <p id="google-button"><a href="/users/auth/google"><i class="fa-brands fa-google"></i>&emsp;Sign in with Google</a></p>
+        <div class="form-submit-button">
+            <input type="submit" class="pointer" value="Sign In">
+        </div>
+    </form>
+</div>
