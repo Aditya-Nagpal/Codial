@@ -13,7 +13,7 @@
                     let newPost=newPostDom(data.data.post);
                     $('#posts-list-container>ul').prepend(newPost);
                     if($('.post').length){
-                        $('#posts-list-container ul .replacement-text').addClass('hide');
+                        $('#posts-list-container>ul').children().last().addClass('hide');
                     }
                     deletePost($(' .delete-post-button', newPost));
                     new PostComments(data.data.post._id);
@@ -33,37 +33,45 @@
     };
 
     // Method to create a post in DOM.
-    // let newPostDom=function(post){
-    //     return $(``);
-    // }
-
     let newPostDom=function(post){
-        return $(`<li id="post-${post._id}">
-                    <p>
-                        <small>
-                            <a class="delete-post-button" href="/posts/destroy/${post._id}">X</a>
-                        </small>
-                        ${post.content}<br>
-                        <small> ${post.user.name}</small><br>
-                        <small>
-                            <a class="toggle-like-button" type="Post" data-likes="${post.likes.length}" href="/likes/toggle/?id=${post._id}&type=Post">
-                                <span>${post.likes.length}</span> <button type="button"><i class="fa-regular fa-xl fa-thumbs-up"></i></button>
-                            </a>
-                        </small>
-                    </p>
-                    <div class="post-comments">
-                        <form action="/comments/create" method="POST">
-                            <input type="text" name="content" placeholder="Comment here..." required>
-                            <input type="hidden" name="post" value="${post._id}">
-                            <input type="submit" value="Post Comment"> 
-                        </form>
-                        <div class="post-comments-list">
-                            <ul id="post-comments-${post._id}">
+        let img_url="/images/default-dp.jpg";
+        if(post.user.avatar){
+            img_url=post.user.avatar;
+        }
+        return $(`<li id="post-${post._id}" class="post">
+                        <section class="post-section">
+                            <div class="user-pic">
+                                <img src=${img_url} />
+                            </div>
+                            <div>
+                                <p class="post-user-name">${post.user.name}</p>
+                                <p class="post-content">${post.content}</p>
+                                <div class="post-options">
+                                    <span id="post-${post._id}-likes">Likes: ${post.likes.length}</span>
+                                    <div>
+                                        <a class="toggle-like-button" type="Post" data-likes="${post.likes.length}" href="/likes/toggle/?id=${post._id}&type=Post" postId="${post._id}">
+                                            <button type="button" class="pointer" style="margin-right: 50px;"><i class="fa-regular fa-xl fa-thumbs-up"></i></button>
+                                        </a>
+                                        <span>
+                                            <a class="delete-post-button" href="/posts/destroy/${post.id}">delete</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="comment-section">
+                            <h4>Comments</h4>
+                            <form id="post-${post._id}-comments-form" class="post-comments-form" action="/comments/create" method="POST">
+                                <textarea name="content" placeholder="Comment here..." required spellcheck="false"></textarea>
+                                <input type="hidden" name="post" value="${post._id}">
+                                <input type="submit" value="comment" class="pointer"> 
+                            </form>
+                            <ul id="post-comments-${post._id}" class="comments-list-container">
+                                <small class="replacement-text">No comments yet.</small>
                             </ul>
-                        </div>
-                    </div>
-                </li>`);
-    };
+                        </section>  
+                    </li>`);
+    }
 
     //method to delete a post from DOM.
     let deletePost=function(deleteLink){
@@ -75,7 +83,7 @@
                 success: function(data){
                     $(`#post-${data.data.post_id}`).remove();
                     if($('.post').length == 0){
-                        $('#posts-list-container ul .replacement-text').removeClass('hide');
+                        $('#posts-list-container>ul').children().last().removeClass('hide');
                     }
                     new Noty({
                         theme: 'relax',

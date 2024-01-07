@@ -37,14 +37,18 @@
         <!-- else show only the profile info -->
         <% if(user.friendships.find((element)=>element.to_user._id.toJSON() == profile_user._id.toJSON())){ %> 
             <form id="remove-friend-form" action="/friendships/remove/?from_user=<%= user.id %>&to_user=<%= profile_user.id %>" value="<%= user.id %>&<%= profile_user.id %>" method="POST">
-                <button id="remove-friend-button">Remove</button>
+                <div class="form-submit-button">
+                    <input type="submit" class="pointer" value="Remove">
+                </div>
             </form>
         <% } else{ %> 
             <form id="add-friend-form" action="/friendships/add/?from_user=<%= user.id %>&to_user=<%= profile_user.id %>" value="<%= user._id %>&<%= profile_user.id %>" method="POST">
-                <button id="add-friend-button">Add</button>
+                <div class="form-submit-button">
+                    <input type="submit" class="pointer" value="Add">
+                </div>
             </form>
         <% } %>           
     <% } %>
 </div>
-<!-- <script src="/js/home_friends.js"></script> -->
+<script src="/js/home_friends.js"></script>
 <script src="/js/home_friends.js"></script>

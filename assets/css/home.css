@@ -102,6 +102,7 @@
 
 .replacement-text{
     height: 100%;
+    min-height: 51px;
     margin: 0;
     display: flex;
     align-items: center;
@@ -111,7 +112,7 @@
     font-weight: 700;
 }
 
-.hide{visibility: hidden;}
+.hide{display: none;}
 
 .pointer{cursor: pointer;}
 

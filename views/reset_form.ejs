@@ -1,16 +1,37 @@
 <link rel="stylesheet" type="text/css" href="/css/forms.css">
+<style>
+    :root{
+        --font-fam: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .reset-form-success-p{
+        text-align: center;
+        font-size: 2.5rem;
+        font-family: var(--font-fam);
+        color: red;
+    }
+
+    .reset-form-success-p a{
+        text-decoration: none;
+        color: black;
+    }
+
+    .reset-form-success-p a:hover{color: yellow;}
+</style>
 
 <% if(resetToken.isValid) { %>
     <div class="form-container">
-        <form action="/users/reset_password/change_password/<%= resetToken.accessToken %>" method="POST">
-            <input type="password" name="new_password" placeholder="New Password" required>
-            <input type="password" name="confirm_new_password" placeholder="Confirm new password" required>
-            <input type="submit" name="Reset password">
+        <form action="/users/reset_password/change_password/<%= resetToken.accessToken %>" class="form" method="POST">
+            <label for="new_password" class="form-label"><b>New Password:&emsp;</b></label>
+            <input type="password" class="form-text-input" name="new_password" placeholder="New Password" required>
+            <label for="confirm_new_password" class="form-label"><b>Confirm New Password:&emsp;</b></label>
+            <input type="password" class="form-text-input" name="confirm_new_password" placeholder="Confirm New Password" required>
+            <div class="form-submit-button">
+                <input type="submit" class="pointer" value="Reset Password">
+            </div>
         </form>
     </div>
 <% } else{ %>
-    <div>
-        <h3>Your password has been reset successfully!</h3>
-        <p> You can go back to <a href="/users/sign-in">sign in</a> page.</p>
-    </div>
+    <p class="reset-form-success-p">Your password has been reset successfully!</p>
+    <p class="reset-form-success-p"> You can close this page.</p>
 <% } %>

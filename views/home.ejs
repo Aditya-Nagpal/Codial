@@ -90,10 +90,10 @@
 </script>
 <% if(posts.length){ %> 
     <script>
-        $('#posts-list-container ul .replacement-text').addClass('hide');
+        $('#posts-list-container>ul').children().last().addClass('hide');
     </script>
 <% } else { %> 
     <script>
-        $('#posts-list-container ul .replacement-text').removeClass('hide');
+        $('#posts-list-container>ul').children().last().removeClass('hide');
     </script>
 <% } %>

@@ -9,7 +9,7 @@ module.exports.create=async function (req,res){
             user: req.user._id
         });
         if(req.xhr){
-            post=await post.populate('user','name');
+            post=await post.populate('user','name avatar');
             return res.status(200).json({
                 data: {
                     post: post
@@ -20,7 +20,7 @@ module.exports.create=async function (req,res){
         req.flash('success','Post Published.');
         return res.redirect('back');
     } catch (error) {
-        req.flash('error',err);
+        req.flash('error',error);
         return res.redirect('back'); 
     }
 };

@@ -11,10 +11,10 @@
             <p class="post-user-name"><%= post.user.name %></p>
             <p class="post-content"><%= post.content %></p>
             <div class="post-options">
-                <span>Likes: <%= post.likes.length %></span>
+                <span id="post-<%= post._id %>-likes">Likes: <%= post.likes.length %></span>
                 <div>
                     <% if(locals.user){ %> 
-                        <a class="toggle-like-button" type="Post" data-likes="<%= post.likes.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post">
+                        <a class="toggle-like-button" type="Post" data-likes="<%= post.likes.length %>" href="/likes/toggle/?id=<%=post._id%>&type=Post" postId="<%= post._id %>">
                             <button type="button" class="pointer" style="margin-right: 50px;"><i class="fa-regular fa-xl fa-thumbs-up"></i></button>
                         </a>
                     <% } %>
@@ -40,6 +40,17 @@
             <% for(let comment of post.comments){ %>
                 <%- include('_comment', {comment: comment}) %>
             <% } %>
+            <small class="replacement-text">No comments yet.</small>
         </ul>
     </section>  
 </li>
+
+<% if(post.comments.length){ %> 
+    <script>
+        $('#post-comments-<%= post._id %> small').addClass('hide');
+    </script>
+<% } else{ %> 
+    <script>
+        $('#post-comments-<%= post._id %> small').removeClass('hide');
+    </script>
+<% } %>

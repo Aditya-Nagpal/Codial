@@ -10,16 +10,16 @@
         <p class="comment-user-name"><%= comment.user.name %></p>
         <p class="comment-content"><%= comment.content %></p>
         <div class="comment-options">
-            <span>Likes: <%= comment.likes.length %></span>
+            <span id="comment-<%= comment._id %>-likes">Likes: <%= comment.likes.length %></span>
             <div>
                 <% if(locals.user){ %> 
-                    <a class="toggle-like-button" type="Comment" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+                    <a class="toggle-like-button" type="Comment" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment" commentId="<%= comment._id %>">
                         <button type="button" class="pointer" style="margin-right: 60px;"><i class="fa-regular fa-thumbs-up"></i></button>
                     </a>
                 <% } %>
                 <% if(locals.user && locals.user.id == comment.user.id){ %>
                     <span>
-                        <a class="delete-comment-button" href="/comments/destroy/<%= comment.id %>">delete</a>
+                        <a class="delete-comment-button" href="/comments/destroy/<%= comment._id %>" postId="<%= comment.post._id %>">delete</a>
                     </span>
                 <% } %>
             </div>
