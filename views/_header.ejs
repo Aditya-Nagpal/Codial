@@ -18,4 +18,14 @@
             <a href="/">Home</a>
         </li>
     </ul>
+    <% if(locals.user){ %> 
+        <div id="user">
+            <span><a href="/users/profile/<%= user.id %>"><%= locals.user.name %></a></span>
+            <% if(locals.user.avatar){ %> 
+                <img src="<%= locals.user.avatar %>" />
+            <% } else{ %> 
+                <img src="/images/default-dp.jpg" />    
+            <% } %>
+        </div>    
+    <% } %>
 </header>

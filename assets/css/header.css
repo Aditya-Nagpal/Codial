@@ -55,6 +55,32 @@ header ul li a:hover{
     color: red !important;
 }
 
+#user{
+    position: absolute;
+    right: 0;
+    display: flex;
+}
+
+#user img{
+    width: 160px;
+}
+
+#user span{
+    font-size: 1.35rem;
+    font-family: var(--font-fam);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding-right: 11px;
+    text-transform: uppercase;
+}
+
+
+#user span a{
+    text-decoration: none;
+    color: white;
+}
+
 @media screen and (max-width: 1140px) {
     header ul{
         justify-content: center;
