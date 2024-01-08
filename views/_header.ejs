@@ -20,7 +20,7 @@
     </ul>
     <% if(locals.user){ %> 
         <div id="user">
-            <span><a href="/users/profile/<%= user.id %>"><%= locals.user.name %></a></span>
+            <span><a href="/users/profile/<%= user.id %>"><%= locals.user.email %></a></span>
             <% if(locals.user.avatar){ %> 
                 <img src="<%= locals.user.avatar %>" />
             <% } else{ %> 

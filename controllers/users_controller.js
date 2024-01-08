@@ -5,6 +5,7 @@ const path=require('path');
 const crypto=require('crypto');
 const queue=require('../config/kue');
 const resetLinkMailWorker=require('../workers/reset_link_mail_worker');
+const signUpMailWorker=require('../workers/signup_mail_worker');
 
 module.exports.profile=async function (req,res){
     let user=await User.findById(req.params.id);
@@ -73,13 +74,21 @@ module.exports.signIn=function(req,res){
 
 module.exports.create=async function(req,res){
     if(req.body.password != req.body.confirm_password){
+        req.flash('error',"Passwords don't match");
         return res.redirect('back');
     }
     try {
         let user=await User.findOne({email: req.body.email});
         if(!user){
             try {
-                await User.create(req.body);
+                user=await User.create(req.body);
+                let job=queue.create('signup-emails',user).save(function(err){
+                    if(err){
+                        console.log('Error in sending to the queue', err);
+                        return;
+                    }
+                    console.log('job enqueued', job.id);
+                });
                 return res.redirect('/users/sign-in');
             } catch (error) {
                 console.log("Error in creating user while signing up.", error);
@@ -87,6 +96,7 @@ module.exports.create=async function(req,res){
             }
         }
         else{
+            req.flash('error','User already exists.');
             return res.redirect('back');
         }
     } catch (error) {

@@ -57,22 +57,23 @@ header ul li a:hover{
 
 #user{
     position: absolute;
-    right: 0;
+    right: 10px;
     display: flex;
+    align-items: center;
 }
 
 #user img{
-    width: 160px;
+    height: 80px;
+    width: 120px;
 }
 
 #user span{
-    font-size: 1.35rem;
+    font-size: 1.2rem;
     font-family: var(--font-fam);
     font-weight: 600;
     display: flex;
     align-items: center;
     padding-right: 11px;
-    text-transform: uppercase;
 }
 
 

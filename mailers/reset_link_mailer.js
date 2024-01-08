@@ -8,6 +8,7 @@ exports.sendResetMail=(resetToken) => {
       subject: 'Reset password request',
       html: htmlString
   }).then(function(info){
+      console.log('Message sent');
       return;
   })
     .catch(function(err){
