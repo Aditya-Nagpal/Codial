@@ -1,15 +1,16 @@
 const nodemailer=require('nodemailer');
 const ejs=require('ejs');
 const path=require('path');
+const Secrets=require('../secrets');
 
 let transporter=nodemailer.createTransport({
-    service: 'gmail',
-    host: 'smtp.gmail.com',
-    port: 587,
+    service: Secrets.service,
+    host: Secrets.host,
+    port: Secrets.port,
     secure: false,
     auth: {
-        user: 'mycodial@gmail.com',
-        pass: 'awwk cbpf tgpx hacu'
+        user: Secrets.auth.user,
+        pass: Secrets.auth.pass
     }
 });
 

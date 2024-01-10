@@ -8,7 +8,6 @@ exports.signUpSuccess=(user)=>{
         subject: 'Sign up successful',
         html: htmlString
     }).then(function(info){
-        console.log('Message sent');
         return;
     })
       .catch(function(err){

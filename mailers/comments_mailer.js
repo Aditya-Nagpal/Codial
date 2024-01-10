@@ -9,7 +9,6 @@ exports.newComment=(comment) => {
         subject: 'new comment published',
         html: htmlString
     }).then(function(info){
-        console.log('Message sent');
         return;
     })
       .catch(function(err){

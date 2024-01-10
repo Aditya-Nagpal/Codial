@@ -87,7 +87,6 @@ module.exports.create=async function(req,res){
                         console.log('Error in sending to the queue', err);
                         return;
                     }
-                    console.log('job enqueued', job.id);
                 });
                 return res.redirect('/users/sign-in');
             } catch (error) {
@@ -137,7 +136,6 @@ module.exports.sendResetMail=async function (req,res){
                     console.log('Error in sending to queue',err);
                     return;
                 }
-                console.log('Job enqueued',job.id);
             });
             return res.redirect('/users/sign-in');
         }

@@ -24,7 +24,6 @@ module.exports.create=async function (req,res){
                     console.log('Error in sending to the queue', err);
                     return;
                 }
-                console.log('job enqueued', job.id);
             });
             if(req.xhr){
                 return res.status(200).json({
