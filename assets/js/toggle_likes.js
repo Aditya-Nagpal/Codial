@@ -30,7 +30,7 @@ class ToggleLike{
                 }
             })
             .fail(function(errData){
-                console.log('error in completing the request');
+                console.log('error in completing the request', errData);
             });
         });
     }
