@@ -1,4 +1,5 @@
 const express=require('express');
+const env=require('./config/environment');
 const cookieParser=require('cookie-parser');
 const app=express();
 const port=9000;
@@ -12,12 +13,13 @@ const passortGoogle=require('./config/passport-google-oauth2-strategy');
 const MongoStore=require('connect-mongo')(session);
 const flash=require('connect-flash');
 const customMware=require('./config/middleware');
+const path=require('path');
 
 app.use(express.urlencoded());
 
 app.use(cookieParser());
 
-app.use(express.static('./assets'));
+app.use(express.static(env.asset_path));
 // make the uploads path available to the browser.
 app.use('/uploads',express.static(__dirname + '/uploads'));
 app.use(expressLayouts);
@@ -29,7 +31,7 @@ app.set('views','./views');
 
 app.use(session({
     name: 'codial',
-    secret: 'random',
+    secret: env.session_cookie_key,
     saveUninitialized: false,
     resave: false,
     cookie: {

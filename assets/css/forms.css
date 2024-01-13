@@ -74,6 +74,8 @@
     border-radius: 3px;
 }
 
+.form-submit-button input[type=submit]:hover{background-color: rgb(202, 8, 8);}
+
 #forgot-password-button{
     text-align: center;
     margin: 0 0 30px;

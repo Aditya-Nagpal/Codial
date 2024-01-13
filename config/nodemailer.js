@@ -1,18 +1,9 @@
 const nodemailer=require('nodemailer');
 const ejs=require('ejs');
 const path=require('path');
-const Secrets=require('../secrets');
+const env=require('./environment');
 
-let transporter=nodemailer.createTransport({
-    service: Secrets.service,
-    host: Secrets.host,
-    port: Secrets.port,
-    secure: false,
-    auth: {
-        user: Secrets.auth.user,
-        pass: Secrets.auth.pass
-    }
-});
+let transporter=nodemailer.createTransport(env.smtp);
 
 let renderTemplate=(data,relativePath) => {
     let mailHTML;
