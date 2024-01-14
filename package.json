@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sass-watch": "sass --no-source-map --watch assets/scss/:assets/css/"
+    "sass-watch": "sass --no-source-map --watch assets/scss/:assets/css/",
+    "prod_start": "NODE_ENV=production nodemon index.js"
   },
   "keywords": [
     "social"
