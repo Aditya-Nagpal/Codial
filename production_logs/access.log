@@ -1,0 +1,9 @@
+[0mGET / [36m304[0m 213.583 ms - -[0m
+[0mGET / [36m304[0m 31.334 ms - -[0m
+[0mGET /favicon.ico [33m404[0m 8.551 ms - 150[0m
+[0mGET /users/sign-in [36m304[0m 10.267 ms - -[0m
+[0mGET /users/auth/google [36m302[0m 12.043 ms - 0[0m
+[0mGET /users/auth/google/callback?code=4%2F0AfJohXmg95QXpG8EIhmH0OK_0Z7YgBJRdAYxgdSzCZUByhiWuMIWS3dkz59XeTFCi0jueA&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [36m302[0m 650.528 ms - 46[0m
+[0mGET / [32m200[0m 47.948 ms - 6540[0m
+[0mGET /users/sign-out [36m302[0m 9.774 ms - 46[0m
+[0mGET / [32m200[0m 16.987 ms - 5897[0m

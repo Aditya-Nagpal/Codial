@@ -1,3 +1,16 @@
+const fs=require('fs');
+const rfs=require('rotating-file-stream');
+const path=require('path');
+
+const logDirectory=path.join(__dirname,'../production_logs');
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+const accessLogStream=rfs.createStream('access.log',{
+    size: "10M",
+    interval: '1d',
+    path: logDirectory
+});
+
 const development={
     name: 'development',
     asset_path: './assets',
@@ -16,7 +29,11 @@ const development={
     google_client_id: '1074133619127-nagpj34f3okck28iuifccbs1fd3n939r.apps.googleusercontent.com',
     google_client_secret: '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',
     google_callbackURL: 'http://localhost:9000/users/auth/google/callback',
-    jwt_secret: 'codial'
+    jwt_secret: 'codial',
+    morgan: {
+        mode: 'dev',
+        options: {stream: accessLogStream}
+    }
 };
 
 const production= {
@@ -37,7 +54,13 @@ const production= {
     google_client_id: process.env.CODIAL_GOOGLE_CLIENT_ID,
     google_client_secret: process.env.CODIAL_GOOGLE_CLIENT_SECRET,
     google_callbackURL: process.env.CODIAL_GOOGLE_CALLBACK_URL,
-    jwt_secret: process.env.CODIAL_JWT_SECRET
+    jwt_secret: process.env.CODIAL_JWT_SECRET,
+    morgan: {
+        mode: 'combined',
+        options: {stream: accessLogStream}
+    }
 };
+
+console.log(production);
 
 module.exports=eval(process.env.CODIAL_ENVIRONMENT) == undefined ? development : eval(process.env.CODIAL_ENVIRONMENT);
