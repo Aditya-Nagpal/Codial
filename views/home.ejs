@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="/css/home.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
-<link rel="stylesheet" type="text/css" href="/css/comment.css">
+<link rel="stylesheet" type="text/css" href="<%= assetPath('css/home.css') %>">
+<link rel="stylesheet" type="text/css" href="<%= assetPath('css/post.css') %>">
+<link rel="stylesheet" type="text/css" href="<%= assetPath('css/comment.css') %>">
 
 <div>
     <h1 class="page-heading">
@@ -78,10 +78,10 @@
         $('#other-users').css('height','531px');
     </script>
 <% } %>
-<script src="/js/home_post_comments.js"></script>
-<script src="/js/home_posts.js"></script>
-<script src="/js/toggle_likes.js"></script>
-<script src="/js/home_friends.js"></script>
+<script src="<%= assetPath('js/home_post_comments.js') %>"></script>
+<script src="<%= assetPath('js/home_posts.js') %>"></script>
+<script src="<%= assetPath('js/toggle_likes.js') %>"></script>
+<script src="<%= assetPath('js/home_friends.js') %>"></script>
 <script>
     $('.toggle-like-button').each(function(){
         let self=this;
