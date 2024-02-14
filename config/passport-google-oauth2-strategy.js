@@ -9,7 +9,7 @@ passport.use(new googleStrategy({
         clientID: env.google_client_id,
         clientSecret: env.google_client_secret,
         callbackURL: env.google_callbackURL
-    }, function(accessToken, refresToken, profile,done){
+    }, function(accessToken, refreshToken, profile,done){
         // find a user.
         User.findOne({email: profile.emails[0].value}).exec()
             .then(function(user){
