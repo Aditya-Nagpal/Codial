@@ -53,7 +53,7 @@
                                             <button type="button" class="pointer" style="margin-right: 50px;"><i class="fa-regular fa-xl fa-thumbs-up"></i></button>
                                         </a>
                                         <span>
-                                            <a class="delete-post-button" href="/posts/destroy/${post.id}">delete</a>
+                                            <a class="delete-post-button" href="/posts/destroy/${post._id}">delete</a>
                                         </span>
                                     </div>
                                 </div>
